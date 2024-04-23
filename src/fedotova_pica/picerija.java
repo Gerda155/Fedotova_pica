@@ -1,5 +1,7 @@
 package fedotova_pica;
 
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 public class picerija {
@@ -7,6 +9,7 @@ public class picerija {
 	public static void main(String[] args) {
 		
 			String[] darbibas = {"Jauns pircejs", "Aktivie pasutijumi", "Pabeigti pasutijumi", "Apturet"};
+			ArrayList pica = new ArrayList();
 			String izvele;
 			
 			do {

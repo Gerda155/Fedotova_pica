@@ -4,13 +4,15 @@ public class pasutijums {
 	private String picasNos, dzerNos;
 	private boolean siers, pipari;
 	private double cena;
+	private int d;
 	
-	public pasutijums(String picasNos, String dzerNos, boolean siers, boolean pipari, double cena) {
+	public pasutijums(String picasNos, String dzerNos, boolean siers, boolean pipari, double cena, int d) {
 		this.setPicasNos(picasNos);
 		this.setDzerNos(dzerNos);
 		this.setPipari(pipari);
 		this.setSiers(siers);
 		this.cena = cena;
+		this.setD(d);
 	}
 	
 	public void setCena(int cena) {
@@ -51,6 +53,14 @@ public class pasutijums {
 
 	public void setPipari(boolean pipari) {
 		this.pipari = pipari;
+	}
+
+	public int getD() {
+		return d;
+	}
+
+	public void setD(int d) {
+		this.d = d;
 	}
 
 }
