@@ -9,8 +9,8 @@ public class pasutijums {
 	public pasutijums(String picasNos, String dzerNos, boolean siers, boolean pipari, double cena, int d) {
 		this.picasNos = picasNos;
 		this.dzerNos = dzerNos;
-		this.pipari = pipari;
-		this.siers = siers;
+		pipari = false;
+		siers = false;
 		this.cena = cena;
 		this.d = d;
 	}
@@ -62,5 +62,13 @@ public class pasutijums {
 	public void setD(int d) {
 		this.d = d;
 	}
+	
+	public String izvadit() {
+	    return "Pica: " +getPicasNos() + 
+	    	 "\nPicas d: "+getD()+
+	    	 "\nPapild. siers: "+ (isSiers()? "ir" : "nav") + 
+	         "\nPapild. pipari: "+ (isPipari()? "ir" : "nav")+
+	         "\nDzeriens: " +getDzerNos()+"\n";
+	  }
 
 }

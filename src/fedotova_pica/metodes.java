@@ -59,4 +59,5 @@ public class metodes {
 			pasutijums jaunsPas = new pasutijums(pic, dzer, siers, pipari, cena, d);
 			return jaunsPas;
 	}
+	
 }
