@@ -3,16 +3,17 @@ package fedotova_pica;
 import javax.swing.JOptionPane;
 
 public class metodes {
-	String[] picas = {"pica1", "pica2", "pica3", "pica4", "pica5", "pica6"};
-	String[] dzerieni = {"CocaCola", "Fanta", "Pepsi"};
-	String[] jane = {"Jā", "Nē"};
-	String[] diam = {"30", "40", "50"};
-	String izvele, pic, dzer;
-	boolean siers, pipari;
-	double cena;
-	int d;
 	
-	public Object PicasIzvele() {
+	public static Object jaunsPasutijums() {
+		String[] picas = {"pica1", "pica2", "pica3", "pica4", "pica5", "pica6"};
+		String[] dzerieni = {"CocaCola", "Fanta", "Pepsi"};
+		String[] jane = {"Jā", "Nē"};
+		String[] diam = {"30", "40", "50"};
+		String izvele, pic, dzer;
+		boolean siers, pipari;
+		double cena = 0;
+		int d;
+		
 		pic = (String)JOptionPane.showInputDialog(null, "Kadu picu tu gribi?", "Pica", JOptionPane.QUESTION_MESSAGE, null, picas, picas[0]);
 			switch(pic) {
 			case "pica1":
@@ -55,7 +56,7 @@ public class metodes {
 				cena += 0.10;
 			}else pipari = false;
 			
-			pasutijums jaunsPasutijums = new pasutijums(pic, dzer, siers, pipari, cena, d);
-			return jaunsPasutijums;
+			pasutijums jaunsPas = new pasutijums(pic, dzer, siers, pipari, cena, d);
+			return jaunsPas;
 	}
 }

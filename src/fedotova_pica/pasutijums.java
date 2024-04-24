@@ -7,12 +7,12 @@ public class pasutijums {
 	private int d;
 	
 	public pasutijums(String picasNos, String dzerNos, boolean siers, boolean pipari, double cena, int d) {
-		this.setPicasNos(picasNos);
-		this.setDzerNos(dzerNos);
-		this.setPipari(pipari);
-		this.setSiers(siers);
+		this.picasNos = picasNos;
+		this.dzerNos = dzerNos;
+		this.pipari = pipari;
+		this.siers = siers;
 		this.cena = cena;
-		this.setD(d);
+		this.d = d;
 	}
 	
 	public void setCena(int cena) {
