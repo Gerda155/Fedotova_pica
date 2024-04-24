@@ -1,8 +1,13 @@
 package fedotova_pica;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+
+import pokemons.Pokemons;
 
 public class picerija {
 
@@ -17,11 +22,12 @@ public class picerija {
 				
 			switch(izvele) {
 			case "Jauns pircejs":
-				Object sut = metodes.jaunsPasutijums();
+				Object sut = metodes.jaunsPasutijums(picas);
 				picas.add(sut);
 				break;
 					
 			case "Aktivie pasutijumi":
+
 				break;
 					
 			case "Pabeigti pasutijumi":

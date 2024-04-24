@@ -1,10 +1,15 @@
 package fedotova_pica;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 public class metodes {
-	
-	public static Object jaunsPasutijums() {
+	static String file = "aktiviePas.txt";
+	public static Object jaunsPasutijums(ArrayList<Object> picas1) {
 		String[] picas = {"pica1", "pica2", "pica3", "pica4", "pica5", "pica6"};
 		String[] dzerieni = {"CocaCola", "Fanta", "Pepsi"};
 		String[] jane = {"Jā", "Nē"};
@@ -56,7 +61,15 @@ public class metodes {
 				cena += 0.10;
 			}else pipari = false;
 			
-			pasutijums jaunsPas = new pasutijums(pic, dzer, siers, pipari, cena, d);
+		pasutijums jaunsPas = new pasutijums(pic, dzer, siers, pipari, cena, d, true);
+			
+	    try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+	    	writer.write(((pasutijums)jaunsPas).izvadit());
+	        writer.newLine();        
+	    } catch (IOException e) {
+	        JOptionPane.showMessageDialog(null, "Kļūda", "", JOptionPane.ERROR_MESSAGE);
+	    }
+	        
 			return jaunsPas;
 	}
 	

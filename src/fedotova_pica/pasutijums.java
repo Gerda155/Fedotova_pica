@@ -2,17 +2,18 @@ package fedotova_pica;
 
 public class pasutijums {
 	private String picasNos, dzerNos;
-	private boolean siers, pipari;
+	private boolean siers, pipari, aktivs;
 	private double cena;
 	private int d;
 	
-	public pasutijums(String picasNos, String dzerNos, boolean siers, boolean pipari, double cena, int d) {
+	public pasutijums(String picasNos, String dzerNos, boolean siers, boolean pipari, double cena, int d, boolean aktivs) {
 		this.picasNos = picasNos;
 		this.dzerNos = dzerNos;
 		pipari = false;
 		siers = false;
 		this.cena = cena;
 		this.d = d;
+		this.setAktivs(aktivs);
 	}
 	
 	public void setCena(int cena) {
@@ -61,6 +62,14 @@ public class pasutijums {
 
 	public void setD(int d) {
 		this.d = d;
+	}
+	
+	public boolean isAktivs() {
+		return aktivs;
+	}
+
+	public void setAktivs(boolean aktivs) {
+		this.aktivs = aktivs;
 	}
 	
 	public String izvadit() {
