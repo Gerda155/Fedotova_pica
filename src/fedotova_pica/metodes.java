@@ -1,6 +1,8 @@
 package fedotova_pica;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -67,10 +69,24 @@ public class metodes {
 	    	writer.write(((pasutijums)jaunsPas).izvadit());
 	        writer.newLine();        
 	    } catch (IOException e) {
-	        JOptionPane.showMessageDialog(null, "Kļūda", "", JOptionPane.ERROR_MESSAGE);
+	        JOptionPane.showMessageDialog(null, "Kļūda 1.", "Kļūda", JOptionPane.ERROR_MESSAGE);
 	    }
 	        
 			return jaunsPas;
+	}
+	
+	static void aktiviePas() {
+		
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line).append("\n");
+            }
+            JOptionPane.showMessageDialog(null, sb.toString(), "Aktivie pasūtījumi", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Kļūda 2.", "Kļūda", JOptionPane.ERROR_MESSAGE);
+        }
 	}
 	
 }

@@ -4,10 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
-
-import pokemons.Pokemons;
 
 public class picerija {
 
@@ -27,7 +24,7 @@ public class picerija {
 				break;
 					
 			case "Aktivie pasutijumi":
-
+				metodes.aktiviePas();
 				break;
 					
 			case "Pabeigti pasutijumi":
