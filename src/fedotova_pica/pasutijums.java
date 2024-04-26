@@ -13,7 +13,7 @@ public class pasutijums {
 		siers = false;
 		this.cena = cena;
 		this.d = d;
-		this.setAktivs(aktivs);
+		this.aktivs = true;
 	}
 	
 	public void setCena(int cena) {
@@ -73,7 +73,8 @@ public class pasutijums {
 	}
 	
 	public String izvadit() {
-	    return "Pica: " +getPicasNos() + 
+	    return "Status: "+(isAktivs()? "aktīvs" : "pabeigts")+
+	    	 "\nPica: " +getPicasNos() + 
 	    	 "\nPicas d: "+getD()+
 	    	 "\nPapild. siers: "+ (isSiers()? "ir" : "nav") + 
 	         "\nPapild. pipari: "+ (isPipari()? "ir" : "nav")+

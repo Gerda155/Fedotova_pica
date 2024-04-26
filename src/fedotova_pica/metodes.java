@@ -5,13 +5,13 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Queue;
 
 import javax.swing.JOptionPane;
 
 public class metodes {
-	static String file = "aktiviePas.txt";
-	public static Object jaunsPasutijums(ArrayList<Object> picas1) {
+	static String file = "Pasutijumi.txt";
+	public static Object jaunsPasutijums(Queue<Object> picas1) {
 		String[] picas = {"pica1", "pica2", "pica3", "pica4", "pica5", "pica6"};
 		String[] dzerieni = {"CocaCola", "Fanta", "Pepsi"};
 		String[] jane = {"Jā", "Nē"};
@@ -24,20 +24,20 @@ public class metodes {
 		pic = (String)JOptionPane.showInputDialog(null, "Kadu picu tu gribi?", "Pica", JOptionPane.QUESTION_MESSAGE, null, picas, picas[0]);
 			switch(pic) {
 			case "pica1":
-				cena = 5.50;
+				cena = 3.50;
 				break;
 			
 			case "pica2":
 			case "pica3":
-				cena = 6.99;
+				cena = 4.99;
 				break;
 			
 			case "pica4":
-				cena = 7.20;
+				cena = 5.20;
 				break;
 			
 			case "pica5":
-				cena = 7.50;
+				cena = 5.50;
 				break;
 			
 			case "pica6":
@@ -75,18 +75,43 @@ public class metodes {
 			return jaunsPas;
 	}
 	
-	static void aktiviePas() {
+	static void lasitFailu(int sk) {
 		
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                sb.append(line).append("\n");
-            }
-            JOptionPane.showMessageDialog(null, sb.toString(), "Aktivie pasūtījumi", JOptionPane.INFORMATION_MESSAGE);
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Kļūda 2.", "Kļūda", JOptionPane.ERROR_MESSAGE);
-        }
+		if(sk == 1) {
+	        StringBuilder activeOrders = new StringBuilder();
+	        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+	            String line;
+	            while ((line = reader.readLine()) != null) {
+	                String[] parts = line.split("\n"); 
+	                if (parts.length > 0) {
+	                    String status = parts[0].trim();
+	                    if (status.equalsIgnoreCase("aktīvs")) {
+	                        activeOrders.append(line).append("\n");
+	                    }
+	                }
+	            }
+	            JOptionPane.showMessageDialog(null, activeOrders.toString(), "Aktivie pasūtījumi", JOptionPane.INFORMATION_MESSAGE);
+	        } catch (IOException e) {
+	            JOptionPane.showMessageDialog(null, "Kļūda 2", "Kļūda", JOptionPane.ERROR_MESSAGE);
+	        }
+	      }else if(sk == 0) {
+		        StringBuilder pabeigtiOrders = new StringBuilder();
+		        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+		            String line;
+		            while ((line = reader.readLine()) != null) {
+		                String[] parts = line.split("\n"); 
+		                if (parts.length > 0) {
+		                    String status = parts[0].trim();
+		                    if (status.equalsIgnoreCase("pabeigts")) {
+		                        pabeigtiOrders.append(line).append("\n");
+		                    }
+		                }
+		            }
+		            JOptionPane.showMessageDialog(null, pabeigtiOrders.toString(), "Aktivie pasūtījumi", JOptionPane.INFORMATION_MESSAGE);
+		        } catch (IOException e) {
+		            JOptionPane.showMessageDialog(null, "Kļūda 2", "Kļūda", JOptionPane.ERROR_MESSAGE);
+		        }
+	      }
+		}
 	}
 	
-}

@@ -1,16 +1,15 @@
 package fedotova_pica;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+
 import javax.swing.JOptionPane;
 
 public class picerija {
 
 	public static void main(String[] args) {
-		ArrayList<Object> picas = new ArrayList<Object>();
-		String[] darbibas = {"Jauns pircejs", "Aktivie pasutijumi", "Pabeigti pasutijumi", "Apturet"};
+		Queue<Object> picas = new LinkedList<Object>();
+		String[] darbibas = {"Jauns pircejs", "Apkalpojiet klientu", "Aktivie pasutijumi", "Pabeigti pasutijumi", "Apturet"};
 		String izvele;
 			
 		do {
@@ -22,12 +21,20 @@ public class picerija {
 				Object sut = metodes.jaunsPasutijums(picas);
 				picas.add(sut);
 				break;
+				
+			case "Apkalpojiet klientu":
+				Object pirc = picas.peek();
+				((pasutijums)pirc).setAktivs(false);
+				picas.remove();
+				JOptionPane.showMessageDialog(null, "Kliens tiek apkalpots!", "Picerija", JOptionPane.INFORMATION_MESSAGE);
+				break;
 					
 			case "Aktivie pasutijumi":
-				metodes.aktiviePas();
+				metodes.lasitFailu(1);
 				break;
 					
 			case "Pabeigti pasutijumi":
+				metodes.lasitFailu(0);
 				break;
 					
 			case "Apturet":
