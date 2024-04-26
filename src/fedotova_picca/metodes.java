@@ -10,22 +10,21 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Queue;
-
 import javax.swing.JOptionPane;
+import javax.swing.JSlider;
 
 public class metodes {
 	
-	static int i = 1;
+	static int i = 1, d = 30;
 	
 	public static Object jaunsPasutijums(Queue<Object> picas1) {
 		String[] picas = {"pica1", "pica2", "pica3", "pica4", "pica5", "pica6"};
 		String[] dzerieni = {"CocaCola", "Fanta", "Pepsi"};
-		String[] jane = {"Jā", "Nē"};
-		String[] diam = {"30", "40", "50"};
-		String izvele, pic, dzer;
+		//String[] diam = {"30", "40", "50"};
+		String pic, dzer;
 		boolean siers, pipari;
 		double cena = 0;
-		String d;
+		String diam;
 		int choice;
 
 		pic = (String)JOptionPane.showInputDialog(null, "Kadu picu tu gribi?", "Pica", JOptionPane.QUESTION_MESSAGE, null, picas, picas[0]);
@@ -51,11 +50,26 @@ public class metodes {
 				cena = 4.75;
 				break;
 			}
-		d  = (String)JOptionPane.showInputDialog(null, "Izvelies picas diametru", "Pica", JOptionPane.QUESTION_MESSAGE, null, diam, diam[0]);
-			if(d == "40") {
+
+	        JSlider slider = createSlider();
+	        slider.setValue(d);
+	        
+	        
+	        int option = JOptionPane.showConfirmDialog(null, new Object[]{"Izvelies picas diametru: ", slider}, "Выбор значения", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+	        
+	        if (option == JOptionPane.OK_OPTION) {
+	            d = slider.getValue();
+	            System.out.println("Выбранное значение: " + d);
+	        } else {
+	            System.out.println("Отменено");
+	        }
+	        
+	        diam = String.valueOf(d);
+	        
+			if(diam.equals("40")) {
 				cena += 0.50;
 			}
-			else if(d == "50") {
+			else if(diam.equals("50")) {
 				cena ++;
 			}
 
@@ -76,7 +90,7 @@ public class metodes {
 				cena += 0.10;
 			}else pipari = false;
 			
-		pasutijums jaunsPas = new pasutijums(pic, dzer, siers, pipari, cena, d, i);
+		pasutijums jaunsPas = new pasutijums(pic, dzer, siers, pipari, cena, diam, i);
 		i++;
 		rakstitFaila(jaunsPas, "pasutijumi.txt");
 		
@@ -146,6 +160,18 @@ public class metodes {
         SimpleDateFormat format = new SimpleDateFormat("HH : mm");
         String laiks = format.format(time);
         return laiks;
-}
+	}
+	
+    private static JSlider createSlider() {
+        JSlider slider = new JSlider(JSlider.HORIZONTAL, 30, 50, 30);
+        slider.setMajorTickSpacing(10);
+        slider.setMinorTickSpacing(10);
+        slider.setPaintTicks(true);
+        slider.setPaintLabels(true);
+        slider.setSnapToTicks(true);
+        return slider;
+    }
+    
+	
 	}
 
