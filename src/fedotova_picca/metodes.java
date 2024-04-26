@@ -71,8 +71,7 @@ public class metodes {
 				cena += 0.10;
 			}else pipari = false;
 			
-		boolean aktivs = true;
-		pasutijums jaunsPas = new pasutijums(pic, dzer, siers, pipari, cena, d, aktivs, i);
+		pasutijums jaunsPas = new pasutijums(pic, dzer, siers, pipari, cena, d, i);
 		i++;
 		rakstitFaila(jaunsPas, "pasutijumi.txt");
 		

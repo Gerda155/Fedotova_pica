@@ -27,7 +27,6 @@ public class picerija {
 			case "Apkalpojiet klientu":
 				if(picasAkt != null) {
 					Object pirc = picasAkt.peek();
-					((pasutijums)pirc).setAktivs(false);
 					picasPab.add(pirc);
 					metodes.rakstitFaila(pirc, "pabeigti.txt");
 					picasAkt.remove();
@@ -38,11 +37,18 @@ public class picerija {
 				break;
 
 			case "Aktivie pasutijumi":
-				metodes.lasitFailu("pasutijumi.txt");
+				if(picasAkt != null) 
+					metodes.lasitFailu("pasutijumi.txt");
+				else 
+					JOptionPane.showMessageDialog(null, "Klientu vēl nav", "Picerija", JOptionPane.ERROR_MESSAGE);
+					
 				break;
 
 			case "Pabeigti pasutijumi":
-				metodes.lasitFailu("pabeigti.txt");
+				if(picasPab != null) 
+					metodes.lasitFailu("pabeigti.txt");
+				else
+					JOptionPane.showMessageDialog(null, "Pabeigtu pasūtījumu vēl nav", "Picerija", JOptionPane.ERROR_MESSAGE);
 				break;
 
 			case "Apturet":
