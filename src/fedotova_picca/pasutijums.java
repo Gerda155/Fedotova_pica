@@ -1,12 +1,12 @@
-package fedotova_pica;
+package fedotova_picca;
 
 public class pasutijums {
-	private String picasNos, dzerNos;
+	private String picasNos, dzerNos, d;
 	private boolean siers, pipari, aktivs;
 	private double cena;
-	private int d;
-	
-	public pasutijums(String picasNos, String dzerNos, boolean siers, boolean pipari, double cena, int d, boolean aktivs) {
+	private int nr;
+
+	public pasutijums(String picasNos, String dzerNos, boolean siers, boolean pipari, double cena, String d, boolean aktivs, int nr) {
 		this.picasNos = picasNos;
 		this.dzerNos = dzerNos;
 		pipari = false;
@@ -14,12 +14,13 @@ public class pasutijums {
 		this.cena = cena;
 		this.d = d;
 		this.aktivs = true;
+		this.nr = nr;
 	}
-	
+
 	public void setCena(int cena) {
 		this.cena = cena;
 	}
-	
+
 	public double getCena() {
 		return cena;
 	}
@@ -56,14 +57,14 @@ public class pasutijums {
 		this.pipari = pipari;
 	}
 
-	public int getD() {
+	public String getD() {
 		return d;
 	}
 
-	public void setD(int d) {
+	public void setD(String d) {
 		this.d = d;
 	}
-	
+
 	public boolean isAktivs() {
 		return aktivs;
 	}
@@ -72,13 +73,22 @@ public class pasutijums {
 		this.aktivs = aktivs;
 	}
 	
+	public void setNr(int nr) {
+		this.nr = nr;
+	}
+
+	public double getNr() {
+		return nr;
+	}
+
 	public String izvadit() {
-	    return "Status: "+(isAktivs()? "aktīvs" : "pabeigts")+
-	    	 "\nPica: " +getPicasNos() + 
+	    return "Nr.: "+getNr()+
+	    	 "\nPica: " +getPicasNos() +
 	    	 "\nPicas d: "+getD()+
-	    	 "\nPapild. siers: "+ (isSiers()? "ir" : "nav") + 
+	    	 "\nPapild. siers: "+ (isSiers()? "ir" : "nav") +
 	         "\nPapild. pipari: "+ (isPipari()? "ir" : "nav")+
-	         "\nDzeriens: " +getDzerNos()+"\n";
+	         "\nDzeriens: " +getDzerNos()+
+	         "\nCena: "+getCena()+"\n";
 	  }
 
 }
