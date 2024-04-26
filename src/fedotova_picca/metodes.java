@@ -26,6 +26,7 @@ public class metodes {
 		boolean siers, pipari;
 		double cena = 0;
 		String d;
+		int choice;
 
 		pic = (String)JOptionPane.showInputDialog(null, "Kadu picu tu gribi?", "Pica", JOptionPane.QUESTION_MESSAGE, null, picas, picas[0]);
 			switch(pic) {
@@ -61,14 +62,16 @@ public class metodes {
 		dzer = (String)JOptionPane.showInputDialog(null, "Kadu dzerienu tu gribi?", "Dzeriens", JOptionPane.QUESTION_MESSAGE, null, dzerieni, dzerieni[0]);
 			cena += 1.50;
 
-		izvele = (String)JOptionPane.showInputDialog(null, "Vai tu gribi papildu sieru?", "Siers", JOptionPane.QUESTION_MESSAGE, null, jane, jane[0]);
-			if(izvele.equals("Jā")){
+	    choice = JOptionPane.showOptionDialog( null, "Vai tu gribi papildu sieru?", "Siers", JOptionPane.YES_NO_OPTION,
+	        		 JOptionPane.QUESTION_MESSAGE, null, new String[]{"Jā", "Nē"}, "Nē");
+			if(choice == JOptionPane.YES_OPTION){
 				siers = true;
 				cena += 0.50;
 			}else siers = false;
 
-		izvele = (String)JOptionPane.showInputDialog(null, "Vai tu gribi papildus piparus?", "Siers", JOptionPane.QUESTION_MESSAGE, null, jane, jane[0]);
-			if(izvele.equals("Jā")) {
+		choice = JOptionPane.showOptionDialog( null, "Vai tu gribi papildu sieru?", "Siers", JOptionPane.YES_NO_OPTION,
+	        	 JOptionPane.QUESTION_MESSAGE, null, new String[]{"Jā", "Nē"}, "Nē");
+			if(choice == JOptionPane.YES_OPTION) {
 				pipari = true;
 				cena += 0.10;
 			}else pipari = false;
