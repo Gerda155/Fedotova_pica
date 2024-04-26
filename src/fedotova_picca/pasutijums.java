@@ -73,9 +73,8 @@ public class pasutijums {
 	}
 
 	public String izvadit() {
-	    return "Nr.: "+getNr()+
-	    	 "\nPica: " +getPicasNos() +
-	    	 "\nPicas d: "+getD()+
+	    return "Nr.: "+getNr() + "  Laiks: "+metodes.Laiks() +
+	    	 "\nPica: " +getPicasNos()+ " " + getD()+" cm"+
 	    	 "\nPapild. siers: "+ (isSiers()? "ir" : "nav") +
 	         "\nPapild. pipari: "+ (isPipari()? "ir" : "nav")+
 	         "\nDzeriens: " +getDzerNos()+

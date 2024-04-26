@@ -5,7 +5,9 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Queue;
 
@@ -117,7 +119,7 @@ public class metodes {
 	            String line;
 	            int lineCount = 0;
 	            while ((line = reader.readLine()) != null) {
-	                if (lineCount >= 7) {
+	                if (lineCount >= 6) {
 	                	rindas.add(line);
 	                }
 	                lineCount++;
@@ -135,5 +137,12 @@ public class metodes {
 	        	JOptionPane.showMessageDialog(null, "Kļūda 1.", "Kļūda", JOptionPane.ERROR_MESSAGE);
 	        }
 	}
+	
+	static String Laiks() {
+        Date time = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("HH : mm");
+        String laiks = format.format(time);
+        return laiks;
+}
 	}
 
