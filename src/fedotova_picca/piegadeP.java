@@ -2,12 +2,11 @@ package fedotova_picca;
 
 public class piegadeP extends pasutijums{
 	
-	private String vards, adrese;
-	long telNr;
+	private String vards, adrese, telNr;
 	
 	public piegadeP(String picasNos, String dzerNos, boolean siers,boolean pipari,
-					double cena, String d, int nr, String vards, String adrese, long telNr) {
-		super(picasNos, dzerNos, siers, pipari, cena, d, nr);
+					double cena, String d, int nr, boolean piegad, String vards, String adrese, String telNr) {
+		super(picasNos, dzerNos, siers, pipari, cena, d, nr, piegad);
 		this.adrese = adrese;
 		this.vards = vards;
 		this.telNr = telNr;
@@ -29,11 +28,11 @@ public class piegadeP extends pasutijums{
 		this.adrese = adrese;
 	}
 	
-	public long getTelNr() {
+	public String getTelNr() {
 		return telNr;
 	}
 
-	public void setTelNr(long telNr) {
+	public void setTelNr(String telNr) {
 		this.telNr = telNr;
 	}
 	

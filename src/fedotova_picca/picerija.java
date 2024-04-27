@@ -11,7 +11,7 @@ public class picerija {
 	public static void main(String[] args) {
 		Queue<Object> picasAkt = new LinkedList<Object>();
 		ArrayList<Object> picasPab = new ArrayList<Object>();
-		String[] darbibas = {"Jauns pircejs", "Apkalpojiet klientu", "Aktivie pasutijumi", "Pabeigti pasutijumi", "Apturet"};
+		String[] darbibas = {"Jauns klients", "Apkalpojiet klientu", "Aktivie pasūtūjumi", "Piegādes pasūtījumi", "Pabeigti pasūtījumi", "Apturet"};
 		String izvele;
 
 		do {
@@ -19,32 +19,41 @@ public class picerija {
 			if(izvele == null) izvele = "Apturet";
 
 			switch(izvele) {
-			case "Jauns pircejs":
-				Object sut = metodes.jaunsPasutijums(picasAkt);
-				picasAkt.add(sut);
+			case "Jauns klients":
+				picasAkt = metodes.jaunsPasutijums(picasAkt);
 				break;
 
 			case "Apkalpojiet klientu":
 				if(!picasAkt.isEmpty()) {
 					Object pirc = picasAkt.peek();
 					picasPab.add(pirc);
+					if(((pasutijums)pirc).isPiegad()) 
+						failiem.parrakstit("piegade.txt");
+					else
+						failiem.parrakstit("pasutijumi.txt");
+					
 					failiem.rakstitFaila(pirc, "pabeigti.txt");
 					picasAkt.remove();
-					failiem.parrakstit();
 					JOptionPane.showMessageDialog(null, "Kliens tiek apkalpots!", "Picerija", JOptionPane.INFORMATION_MESSAGE);
 				}else 
 					JOptionPane.showMessageDialog(null, "Klientu vēl nav", "Picerija", JOptionPane.ERROR_MESSAGE);
 				break;
 
-			case "Aktivie pasutijumi":
+			case "Aktivie pasūtūjumi":
 				if(!picasAkt.isEmpty()) 
 					failiem.lasitFailu("pasutijumi.txt");
 				else 
-					JOptionPane.showMessageDialog(null, "Klientu vēl nav", "Picerija", JOptionPane.ERROR_MESSAGE);
-					
+					JOptionPane.showMessageDialog(null, "Klientu vēl nav", "Picerija", JOptionPane.ERROR_MESSAGE);	
+				break;
+				
+			case "Piegādes pasūtījumi":
+				if(!picasAkt.isEmpty()) {
+					failiem.lasitFailu("piegade.txt");
+				}else 
+					JOptionPane.showMessageDialog(null, "Piegāde vēl nav", "Picerija", JOptionPane.ERROR_MESSAGE);
 				break;
 
-			case "Pabeigti pasutijumi":
+			case "Pabeigti pasūtījumi":
 				if(!picasPab.isEmpty()) 
 					failiem.lasitFailu("pabeigti.txt");
 				else
@@ -55,6 +64,7 @@ public class picerija {
 				JOptionPane.showMessageDialog(null, "Paldies par speli!");
 				failiem.clearFail("pabeigti.txt");
 				failiem.clearFail("pasutijumi.txt");
+				failiem.clearFail("piegade.txt");
 				break;
 			}
 		}while(!izvele.equals("Apturet"));

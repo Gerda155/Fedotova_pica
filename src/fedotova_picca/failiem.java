@@ -43,14 +43,14 @@ public class failiem {
         }
 	}
 	
-	static void parrakstit() {
+	static void parrakstit(String fail) {
 		
 		 List<String> rindas = new ArrayList<>();
-	        try (BufferedReader reader = new BufferedReader(new FileReader("pasutijumi.txt"))) {
+	        try (BufferedReader reader = new BufferedReader(new FileReader(fail))) {
 	            String line;
 	            int lineCount = 0;
 	            while ((line = reader.readLine()) != null) {
-	                if (lineCount >= 6) {
+	                if (fail.equals("pasutijumi.txt") && lineCount >= 6 || fail.equals("piegade.txt") && lineCount >= 9) {
 	                	rindas.add(line);
 	                }
 	                lineCount++;
@@ -59,7 +59,7 @@ public class failiem {
 	        	JOptionPane.showMessageDialog(null, "Kļūda 1.", "Kļūda", JOptionPane.ERROR_MESSAGE);
 	        }
 
-	        try (BufferedWriter writer = new BufferedWriter(new FileWriter("pasutijumi.txt"))) {
+	        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fail))) {
 	            for (String i : rindas) {
 	                writer.write(i);
 	                writer.newLine();

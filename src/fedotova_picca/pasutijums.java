@@ -2,11 +2,11 @@ package fedotova_picca;
 
 public class pasutijums {
 	private String picasNos, dzerNos, d;
-	private boolean siers, pipari;
+	private boolean siers, pipari, piegad;
 	private double cena;
 	private int nr;
 
-	public pasutijums(String picasNos, String dzerNos, boolean siers, boolean pipari, double cena, String d, int nr) {
+	public pasutijums(String picasNos, String dzerNos, boolean siers, boolean pipari, double cena, String d, int nr, boolean piegad) {
 		this.picasNos = picasNos;
 		this.dzerNos = dzerNos;
 		this.pipari = pipari;
@@ -14,6 +14,7 @@ public class pasutijums {
 		this.cena = cena;
 		this.d = d;
 		this.nr = nr;
+		this.piegad = piegad;
 	}
 
 	public void setCena(int cena) {
@@ -72,6 +73,14 @@ public class pasutijums {
 		return nr;
 	}
 
+	public boolean isPiegad() {
+		return piegad;
+	}
+
+	public void setPiegad(boolean piegad) {
+		this.piegad = piegad;
+	}
+	
 	public String izvadit() {
 	    return "Nr.: "+getNr() + "  Laiks: "+metodes.Laiks() +
 	    	 "\nPica: " +getPicasNos()+ " " + getD()+" cm"+
