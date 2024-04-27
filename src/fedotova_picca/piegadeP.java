@@ -42,7 +42,7 @@ public class piegadeP extends pasutijums{
 		     "\nPapild. siers: "+ (isSiers()? "ir" : "nav") +
 		     "\nMērce: "+getMerce()+
 		     "\nDzeriens: " +getDzerNos()+
-		     "\nCena: "+getCena()+"\n"+
+		     "\nCena: "+getCena()+
 	         "\nAdrese: "+getAdrese()+
 	         "\nPasūtītājs: "+getVards()+
 	         "\nTel.: "+getTelNr()+

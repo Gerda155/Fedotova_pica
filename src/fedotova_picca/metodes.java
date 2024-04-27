@@ -2,11 +2,20 @@ package fedotova_picca;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Queue;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -75,7 +84,6 @@ public class metodes {
 			}else siers = false;
 		
 		merce = buttons();
-		JOptionPane.showMessageDialog(null, merce);
 		cena+=0.25;
 		
 		izvel = JOptionPane.showOptionDialog( null, "Nogādāt pasūtījumu mājās?", "Piegade", JOptionPane.YES_NO_OPTION,
@@ -157,10 +165,20 @@ public class metodes {
         panel.add(radioBut1);
         panel.add(radioBut2);
         panel.add(radioBut3);
-        
-        JOptionPane.showMessageDialog(null, panel, "Mērces izvele", JOptionPane.PLAIN_MESSAGE);
+        do {
+        	JOptionPane.showMessageDialog(null, panel, "Mērces izvele", JOptionPane.PLAIN_MESSAGE);
+        }while(merce == null);
         return merce;
     }
+    
+	public static void skana() throws MalformedURLException,
+	UnsupportedAudioFileException, IOException, LineUnavailableException{
+		File f = new File(".//"+"kolokol.wav");
+		AudioInputStream ais = AudioSystem.getAudioInputStream(f.toURI().toURL());
+		Clip c = AudioSystem.getClip();
+		c.open(ais);
+		c.start();
+	}
     
 	}
 

@@ -1,8 +1,12 @@
 package fedotova_picca;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
 
 public class picerija {
@@ -20,6 +24,12 @@ public class picerija {
 			switch(izvele) {
 			case "Jauns klients":
 				picasAkt = metodes.jaunsPasutijums(picasAkt);
+				try {
+					metodes.skana();
+				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+					e.printStackTrace();
+				}
+				JOptionPane.showMessageDialog(null, "Pasūtījums tika pieņemts", "Picerija", JOptionPane.INFORMATION_MESSAGE);
 				break;
 
 			case "Apkalpojiet klientu":
@@ -70,7 +80,6 @@ public class picerija {
 	}
 
 }
-
 //KARTINKI
 //ZVUKI
 //GIFKI
