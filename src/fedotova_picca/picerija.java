@@ -89,6 +89,3 @@ public class picerija {
 
 }
 //KARTINKI
-//ZVUKI
-//GIFKI
-//...
