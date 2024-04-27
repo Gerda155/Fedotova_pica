@@ -3,7 +3,6 @@ package fedotova_picca;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
-
 import javax.swing.JOptionPane;
 
 public class picerija {
@@ -71,8 +70,7 @@ public class picerija {
 	}
 
 }
-//DOSTAVKA
-//VIBOR S POMOSHJU TOCHECHEK
+
 //KARTINKI
 //ZVUKI
 //GIFKI

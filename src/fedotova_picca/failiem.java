@@ -68,4 +68,5 @@ public class failiem {
 	        	JOptionPane.showMessageDialog(null, "Kļūda 1.", "Kļūda", JOptionPane.ERROR_MESSAGE);
 	        }
 	}
+
 }

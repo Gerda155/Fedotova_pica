@@ -1,15 +1,15 @@
 package fedotova_picca;
 
 public class pasutijums {
-	private String picasNos, dzerNos, d;
-	private boolean siers, pipari, piegad;
+	private String picasNos, dzerNos, d, merce;
+	private boolean siers, piegad;
 	private double cena;
 	private int nr;
 
-	public pasutijums(String picasNos, String dzerNos, boolean siers, boolean pipari, double cena, String d, int nr, boolean piegad) {
+	public pasutijums(String picasNos, String dzerNos, boolean siers, String merce, double cena, String d, int nr, boolean piegad) {
 		this.picasNos = picasNos;
 		this.dzerNos = dzerNos;
-		this.pipari = pipari;
+		this.merce = merce;
 		this.siers = siers;
 		this.cena = cena;
 		this.d = d;
@@ -49,12 +49,12 @@ public class pasutijums {
 		this.siers = siers;
 	}
 
-	public boolean isPipari() {
-		return pipari;
+	public String getMerce() {
+		return merce;
 	}
 
-	public void setPipari(boolean pipari) {
-		this.pipari = pipari;
+	public void setMerce(String merce) {
+		this.merce = merce;
 	}
 
 	public String getD() {
@@ -85,7 +85,7 @@ public class pasutijums {
 	    return "Nr.: "+getNr() + "  Laiks: "+metodes.Laiks() +
 	    	 "\nPica: " +getPicasNos()+ " " + getD()+" cm"+
 	    	 "\nPapild. siers: "+ (isSiers()? "ir" : "nav") +
-	         "\nPapild. pipari: "+ (isPipari()? "ir" : "nav")+
+	         "\nMērce: "+getMerce()+
 	         "\nDzeriens: " +getDzerNos()+
 	         "\nCena: "+getCena()+"\n";
 	  }
