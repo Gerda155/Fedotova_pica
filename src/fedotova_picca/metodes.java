@@ -10,7 +10,6 @@ import java.util.Date;
 import java.util.Queue;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -171,9 +170,9 @@ public class metodes {
         return merce;
     }
     
-	public static void skana() throws MalformedURLException,
+	public static void skana(String nosaukums) throws MalformedURLException,
 	UnsupportedAudioFileException, IOException, LineUnavailableException{
-		File f = new File(".//"+"kolokol.wav");
+		File f = new File(".//skana//"+nosaukums);
 		AudioInputStream ais = AudioSystem.getAudioInputStream(f.toURI().toURL());
 		Clip c = AudioSystem.getClip();
 		c.open(ais);
