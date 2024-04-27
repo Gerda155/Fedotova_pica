@@ -25,39 +25,45 @@ public class picerija {
 				break;
 
 			case "Apkalpojiet klientu":
-				if(picasAkt != null) {
+				if(!picasAkt.isEmpty()) {
 					Object pirc = picasAkt.peek();
 					picasPab.add(pirc);
-					metodes.rakstitFaila(pirc, "pabeigti.txt");
+					failiem.rakstitFaila(pirc, "pabeigti.txt");
 					picasAkt.remove();
-					metodes.parrakstit();
+					failiem.parrakstit();
 					JOptionPane.showMessageDialog(null, "Kliens tiek apkalpots!", "Picerija", JOptionPane.INFORMATION_MESSAGE);
 				}else 
 					JOptionPane.showMessageDialog(null, "Klientu vēl nav", "Picerija", JOptionPane.ERROR_MESSAGE);
 				break;
 
 			case "Aktivie pasutijumi":
-				if(picasAkt != null) 
-					metodes.lasitFailu("pasutijumi.txt");
+				if(!picasAkt.isEmpty()) 
+					failiem.lasitFailu("pasutijumi.txt");
 				else 
 					JOptionPane.showMessageDialog(null, "Klientu vēl nav", "Picerija", JOptionPane.ERROR_MESSAGE);
 					
 				break;
 
 			case "Pabeigti pasutijumi":
-				if(picasPab != null) 
-					metodes.lasitFailu("pabeigti.txt");
+				if(!picasPab.isEmpty()) 
+					failiem.lasitFailu("pabeigti.txt");
 				else
 					JOptionPane.showMessageDialog(null, "Pabeigtu pasūtījumu vēl nav", "Picerija", JOptionPane.ERROR_MESSAGE);
 				break;
 
 			case "Apturet":
 				JOptionPane.showMessageDialog(null, "Paldies par speli!");
-				metodes.clearFail("pabeigti.txt");
-				metodes.clearFail("pasutijumi.txt");
+				failiem.clearFail("pabeigti.txt");
+				failiem.clearFail("pasutijumi.txt");
 				break;
 			}
 		}while(!izvele.equals("Apturet"));
 	}
 
 }
+//DOSTAVKA
+//VIBOR S POMOSHJU TOCHECHEK
+//KARTINKI
+//ZVUKI
+//GIFKI
+//...
