@@ -19,6 +19,8 @@ public class picerija {
 		String[] darbibas = {"Jauns klients", "Apkalpojiet klientu", "Aktivie pasūtūjumi", "Piegādes pasūtījumi", "Pabeigti pasūtījumi", "Apturet"};
 		ImageIcon pica_kot = new ImageIcon(".//atteli//pica_kot2.gif");
 		String izvele;
+		
+		metodes.sakumaEkrans();
 
 		do {
 			izvele = (String)JOptionPane.showInputDialog(null, "Darbibas", "Pica", JOptionPane.QUESTION_MESSAGE, null, darbibas, darbibas[0]);
@@ -27,7 +29,7 @@ public class picerija {
 			switch(izvele) {
 			case "Jauns klients":
 				picasAkt = metodes.jaunsPasutijums(picasAkt);
-					metodes.skana("kolokol.wav");
+				metodes.skana("kolokol.wav");
 				JOptionPane.showMessageDialog(null, "Pasūtījums tika pieņemts", "Picerija", JOptionPane.INFORMATION_MESSAGE);
 				break;
 
@@ -88,4 +90,6 @@ public class picerija {
 	}
 
 }
-//KARTINKI
+//SLOVA
+//NACHALNIJ EKRAN
+//PROVVERKI

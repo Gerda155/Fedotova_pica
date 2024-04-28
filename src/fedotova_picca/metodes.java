@@ -1,6 +1,10 @@
 package fedotova_picca;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -19,11 +23,13 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
+import javax.swing.SwingConstants;
 
 public class metodes {
 	
@@ -192,6 +198,32 @@ public class metodes {
         });
         panel.add(new JLabel(icon));
         panel.add(radioButton);
+        
+    }
+    
+    static void sakumaEkrans() {
+    	JFrame frame = new JFrame("Picērija");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(500, 200);
+        frame.setLayout(new BorderLayout());
+
+        JPanel imagePanel = new JPanel();
+        imagePanel.setLayout(new BorderLayout());
+
+        ImageIcon imageIcon = new ImageIcon(".//atteli//pica_logo.png");
+        JLabel imageLabel = new JLabel(imageIcon);
+        imagePanel.add(imageLabel, BorderLayout.CENTER);
+
+        JLabel textLabel = new JLabel("Gerdas Picērija", SwingConstants.CENTER);
+        textLabel.setFont(new Font("Satisfy", Font.BOLD, 50));
+        imagePanel.add(textLabel, BorderLayout.SOUTH);
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); 
+        int x = (screenSize.width - 500) / 2; 
+        
+        frame.add(imagePanel, BorderLayout.CENTER);
+        frame.setLocation(x, 50);
+        frame.setVisible(true);
         
     }
     
