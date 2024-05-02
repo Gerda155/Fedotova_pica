@@ -1,4 +1,4 @@
-package fedotova_picca;
+package Fedotova_pica;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -16,7 +16,7 @@ public class failiem {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(failaNos, true))) {
             writer.write(((pasutijums)jaunsPas).izvadit());
         } catch (IOException e) {
-        	JOptionPane.showMessageDialog(null, "Kļūda 1.", "Kļūda", JOptionPane.ERROR_MESSAGE);
+        	JOptionPane.showMessageDialog(null, "Kļūda"+e, "Kļūda", JOptionPane.ERROR_MESSAGE);
         }
  
 	}
@@ -30,7 +30,7 @@ public class failiem {
                 pasut.append(line).append("\n");
             }
         } catch (IOException e) {
-        	JOptionPane.showMessageDialog(null, "Kļūda 1.", "Kļūda", JOptionPane.ERROR_MESSAGE);
+        	JOptionPane.showMessageDialog(null, "Kļūda"+e, "Kļūda", JOptionPane.ERROR_MESSAGE);
         }
         JOptionPane.showMessageDialog(null, pasut.toString(), "Faila saturs", JOptionPane.INFORMATION_MESSAGE);
 	}
@@ -39,7 +39,7 @@ public class failiem {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(failaNos, false))) {
         	
         } catch (IOException e) {
-        	JOptionPane.showMessageDialog(null, "Kļūda 3", "Kļūda", JOptionPane.ERROR_MESSAGE);
+        	JOptionPane.showMessageDialog(null, "Kļūda"+e, "Kļūda", JOptionPane.ERROR_MESSAGE);
         }
 	}
 	
@@ -56,7 +56,7 @@ public class failiem {
 	                lineCount++;
 	            }
 	        } catch (IOException e) {
-	        	JOptionPane.showMessageDialog(null, "Kļūda 1.", "Kļūda", JOptionPane.ERROR_MESSAGE);
+	        	JOptionPane.showMessageDialog(null, "Kļūda"+e, "Kļūda", JOptionPane.ERROR_MESSAGE);
 	        }
 
 	        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fail))) {
@@ -65,7 +65,7 @@ public class failiem {
 	                writer.newLine();
 	            }
 	        } catch (IOException e) {
-	        	JOptionPane.showMessageDialog(null, "Kļūda 1.", "Kļūda", JOptionPane.ERROR_MESSAGE);
+	        	JOptionPane.showMessageDialog(null, "Kļūda"+e, "Kļūda", JOptionPane.ERROR_MESSAGE);
 	        }
 	}
 

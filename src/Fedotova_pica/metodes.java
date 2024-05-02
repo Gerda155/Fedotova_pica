@@ -1,10 +1,6 @@
-package fedotova_picca;
+package Fedotova_pica;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -15,7 +11,6 @@ import java.util.Date;
 import java.util.Queue;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -23,22 +18,20 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
-import javax.swing.SwingConstants;
 
 public class metodes {
 	
 	static int i = 1, d = 30;
-	static String merce = null, pica = null;
+	static String merce = null, pica = null, izv = null;
 	
 	public static Queue<Object> jaunsPasutijums(Queue<Object> picas1) {
 		String[] dzerieni = {"CocaCola", "Fanta", "Pepsi"};
-		String dzer, merce;
+		String dzer;
 		boolean siers;
 		double cena = 0;
 		String diam;
@@ -58,7 +51,7 @@ public class metodes {
 	    slider.setValue(d);
 	        
 	        
-	    int option = JOptionPane.showConfirmDialog(null, new Object[]{"Izvelies picas diametru: ", slider}, "Diametrs", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+	    int option = JOptionPane.showConfirmDialog(null, new Object[]{"Picas diametrs: "+"\n40cm - cena + 0.50\n50cm - cena + 1.00", slider}, "Diametrs", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 	    if (option == JOptionPane.OK_OPTION)
 	        d = slider.getValue(); 
 	    diam = String.valueOf(d); 
@@ -67,10 +60,10 @@ public class metodes {
 		else if(diam.equals("50")) 
 			cena ++;
 
-		dzer = (String)JOptionPane.showInputDialog(null, "Kadu dzerienu tu gribi?", "Dzeriens", JOptionPane.QUESTION_MESSAGE, null, dzerieni, dzerieni[0]);
+		dzer = (String)JOptionPane.showInputDialog(null, "Dzēriena izvēle", "Dzēriens, cena + 1.50", JOptionPane.QUESTION_MESSAGE, null, dzerieni, dzerieni[0]);
 			cena += 1.50;
 
-		izvel = JOptionPane.showOptionDialog( null, "Vai tu gribi papildu sieru?", "Siers", JOptionPane.YES_NO_OPTION,
+		izvel = JOptionPane.showOptionDialog( null, "Vai pievienot papildu sieru?", "Siers, cena + 0.50", JOptionPane.YES_NO_OPTION,
 	        		 JOptionPane.QUESTION_MESSAGE, null, new String[]{"Jā", "Nē"}, "Nē");
 			if(izvel == JOptionPane.YES_OPTION){
 				siers = true;
@@ -80,13 +73,15 @@ public class metodes {
 		merce = buttons();
 		cena+=0.25;
 		
-		izvel = JOptionPane.showOptionDialog( null, "Nogādāt pasūtījumu mājās?", "Piegade", JOptionPane.YES_NO_OPTION,
+		izvel = JOptionPane.showOptionDialog( null, "Nogādāt pasūtījumu mājās?", "Piegāde, cena + 2.40", JOptionPane.YES_NO_OPTION,
 	        	 JOptionPane.QUESTION_MESSAGE, null, new String[]{"Jā", "Nē"}, "Nē");
 		if(izvel == JOptionPane.YES_OPTION) {
 			picas1.add(piegade(pica, dzer, siers, merce, cena, diam));
+			pica = null;
 		}else if(izvel == JOptionPane.NO_OPTION){
 			pasutijums jaunsPas = new pasutijums(pica, dzer, siers, merce, cena, diam, i, false);
 			i++;
+			pica = null;
 			failiem.rakstitFaila(jaunsPas, "pasutijumi.txt");
 			picas1.add(jaunsPas);
 		}
@@ -107,15 +102,15 @@ public class metodes {
 		String adrese, vards, telNr;
 		
 		do {
-			vards = (String)JOptionPane.showInputDialog(null, "Ievadi vārdu", "Piegade", JOptionPane.QUESTION_MESSAGE);
+			vards = (String)JOptionPane.showInputDialog(null, "Ievadi vārdu", "Piegāde, cena + 2.40", JOptionPane.QUESTION_MESSAGE);
 			vardsMatc = vardsPat.matcher(vards);
 		}while(!vardsMatc.matches());
 		do {
-			adrese = (String)JOptionPane.showInputDialog(null, "Ievadi adrese", "Piegade", JOptionPane.QUESTION_MESSAGE);
+			adrese = (String)JOptionPane.showInputDialog(null, "Ievadi adrese \"ielas nos. māja-dzīvoklis", "Piegāde", JOptionPane.QUESTION_MESSAGE);
 			adreseMatc = adresePat.matcher(adrese);
 		}while(!adreseMatc.matches());
 		do {
-			telNr = (String)JOptionPane.showInputDialog(null, "Ievadi tel. numuru", "Piegade", JOptionPane.QUESTION_MESSAGE);
+			telNr = (String)JOptionPane.showInputDialog(null, "Ievadi tel. numuru +371", "Piegāde, cena + 2.40", JOptionPane.QUESTION_MESSAGE);
 		}while(telNr.length()!=8);
 		
 		cena += 2.40;
@@ -137,9 +132,9 @@ public class metodes {
     }
     
     static String buttons() {
-        JRadioButton radioBut1 = new JRadioButton("merce1");
-        JRadioButton radioBut2 = new JRadioButton("merce2");
-        JRadioButton radioBut3 = new JRadioButton("merce3");
+        JRadioButton radioBut1 = new JRadioButton("Ķiploku majonēze");
+        JRadioButton radioBut2 = new JRadioButton("Barbekju mērce");
+        JRadioButton radioBut3 = new JRadioButton("Gurķu mērce");
         ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(radioBut1);
         buttonGroup.add(radioBut2);
@@ -160,7 +155,7 @@ public class metodes {
         panel.add(radioBut2);
         panel.add(radioBut3);
         do {
-        	JOptionPane.showMessageDialog(null, panel, "Mērces izvele", JOptionPane.PLAIN_MESSAGE);
+        	JOptionPane.showMessageDialog(null, panel, "Mērces izvēle, cena + 0.50", JOptionPane.PLAIN_MESSAGE);
         }while(merce == null);
         return merce;
     }
@@ -180,52 +175,28 @@ public class metodes {
         ImageIcon pica3 = new ImageIcon(".//atteli//pica_peperoni.jpg");
         JPanel panel = new JPanel(new GridLayout(3, 2));
         
-        AtteliButton(panel, pica1, "Diavola");
-        AtteliButton(panel, pica2, "Hawaii");
-        AtteliButton(panel, pica3, "Peperoni");
+        AtteliPogas(panel, pica1, "Diavola, cena: 4.50");
+        AtteliPogas(panel, pica2, "Hawaii, cena: 4.00");
+        AtteliPogas(panel, pica3, "Peperoni, cena: 3.00");
         
-        JOptionPane.showConfirmDialog(null, panel, "Picas izvele", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-        
+        do {
+        	JOptionPane.showConfirmDialog(null, panel, "Picas izvēle", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        }while(pica == null);
         return pica;
     }
     
-    static void AtteliButton(JPanel panel, ImageIcon icon, String option) {
-        JRadioButton radioButton = new JRadioButton(option);
-        radioButton.addActionListener(new ActionListener() {
+    static void AtteliPogas(JPanel panel, ImageIcon icon, String option) {
+        JRadioButton radioPogas = new JRadioButton(option);
+        radioPogas.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 pica = option;
             }
         });
         panel.add(new JLabel(icon));
-        panel.add(radioButton);
-        
-    }
-    
-    static void sakumaEkrans() {
-    	JFrame frame = new JFrame("Picērija");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 200);
-        frame.setLayout(new BorderLayout());
-
-        JPanel imagePanel = new JPanel();
-        imagePanel.setLayout(new BorderLayout());
-
-        ImageIcon imageIcon = new ImageIcon(".//atteli//pica_logo.png");
-        JLabel imageLabel = new JLabel(imageIcon);
-        imagePanel.add(imageLabel, BorderLayout.CENTER);
-
-        JLabel textLabel = new JLabel("Gerdas Picērija", SwingConstants.CENTER);
-        textLabel.setFont(new Font("Satisfy", Font.BOLD, 50));
-        imagePanel.add(textLabel, BorderLayout.SOUTH);
-
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); 
-        int x = (screenSize.width - 500) / 2; 
-        
-        frame.add(imagePanel, BorderLayout.CENTER);
-        frame.setLocation(x, 50);
-        frame.setVisible(true);
+        panel.add(radioPogas);
         
     }
     
 	}
+
 

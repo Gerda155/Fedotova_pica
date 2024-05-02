@@ -1,4 +1,4 @@
-package fedotova_picca;
+package Fedotova_pica;
 
 public class piegadeP extends pasutijums{
 	
@@ -50,3 +50,4 @@ public class piegadeP extends pasutijums{
 	  }
 
 }
+
