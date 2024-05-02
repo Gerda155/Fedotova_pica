@@ -1,4 +1,4 @@
-package fedotova_picca;
+package Fedotova_pica;
 
 public class pasutijums {
 	private String picasNos, dzerNos, d, merce;
