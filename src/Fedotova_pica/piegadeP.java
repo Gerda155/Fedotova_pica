@@ -5,8 +5,8 @@ public class piegadeP extends pasutijums{
 	private String vards, adrese, telNr;
 	
 	public piegadeP(String picasNos, String dzerNos, boolean siers, String merce,
-					double cena, String d, int nr, boolean piegad, String vards, String adrese, String telNr) {
-		super(picasNos, dzerNos, siers, merce, cena, d, nr, piegad);
+					double cena, String d, int nr, boolean piegad, boolean kFri, String vards, String adrese, String telNr) {
+		super(picasNos, dzerNos, siers, merce, cena, d, nr, piegad, kFri);
 		this.adrese = adrese;
 		this.vards = vards;
 		this.telNr = telNr;

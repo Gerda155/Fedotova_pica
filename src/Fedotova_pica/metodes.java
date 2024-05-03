@@ -16,7 +16,6 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -32,7 +31,7 @@ public class metodes {
 	public static Queue<Object> jaunsPasutijums(Queue<Object> picas1) {
 		String[] dzerieni = {"CocaCola", "Fanta", "Pepsi"};
 		String dzer;
-		boolean siers;
+		boolean siers, kFri;
 		double cena = 0;
 		String diam;
 		int izvel;
@@ -69,17 +68,24 @@ public class metodes {
 				siers = true;
 				cena += 0.50;
 			}else siers = false;
+			
+		izvel = JOptionPane.showOptionDialog( null, "Vai pievienot fr kartupeļus?", "Frī, cena + 1.00", JOptionPane.YES_NO_OPTION,
+	        	JOptionPane.QUESTION_MESSAGE, null, new String[]{"Jā", "Nē"}, "Nē");
+		if(izvel == JOptionPane.YES_OPTION){
+			kFri = true;
+			cena ++;
+		}else kFri = false;
 		
-		merce = buttons();
+		merce = merces();
 		cena+=0.25;
 		
 		izvel = JOptionPane.showOptionDialog( null, "Nogādāt pasūtījumu mājās?", "Piegāde, cena + 2.40", JOptionPane.YES_NO_OPTION,
 	        	 JOptionPane.QUESTION_MESSAGE, null, new String[]{"Jā", "Nē"}, "Nē");
 		if(izvel == JOptionPane.YES_OPTION) {
-			picas1.add(piegade(pica, dzer, siers, merce, cena, diam));
+			picas1.add(piegade(pica, dzer, siers, merce, cena, diam, kFri));
 			pica = null;
 		}else if(izvel == JOptionPane.NO_OPTION){
-			pasutijums jaunsPas = new pasutijums(pica, dzer, siers, merce, cena, diam, i, false);
+			pasutijums jaunsPas = new pasutijums(pica, dzer, siers, merce, cena, diam, i, false, kFri);
 			i++;
 			pica = null;
 			failiem.rakstitFaila(jaunsPas, "pasutijumi.txt");
@@ -95,7 +101,7 @@ public class metodes {
         return laiks;
 	}
 	
-	static Object piegade(String pic, String dzer, boolean siers, String merce, double cena, String diam) {
+	static Object piegade(String pic, String dzer, boolean siers, String merce, double cena, String diam, boolean kFri) {
 		Pattern vardsPat = Pattern.compile("^[a-zA-Z]+$");
 		Pattern adresePat = Pattern.compile("^[\\p{L}\\d\\s.-]+$");
 		Matcher adreseMatc, vardsMatc;
@@ -115,7 +121,7 @@ public class metodes {
 		
 		cena += 2.40;
 		
-		piegadeP jaunaPiegade = new piegadeP(pic, dzer, siers, merce, cena, diam, i, true, vards, adrese, telNr);
+		piegadeP jaunaPiegade = new piegadeP(pic, dzer, siers, merce, cena, diam, i, true, kFri, vards, adrese, telNr);
 		failiem.rakstitFaila(jaunaPiegade, "piegade.txt");
 		i++;
 		return jaunaPiegade;
@@ -131,34 +137,34 @@ public class metodes {
         return slider;
     }
     
-    static String buttons() {
-        JRadioButton radioBut1 = new JRadioButton("Ķiploku majonēze");
-        JRadioButton radioBut2 = new JRadioButton("Barbekju mērce");
-        JRadioButton radioBut3 = new JRadioButton("Gurķu mērce");
-        ButtonGroup buttonGroup = new ButtonGroup();
-        buttonGroup.add(radioBut1);
-        buttonGroup.add(radioBut2);
-        buttonGroup.add(radioBut3);
+    static String merces() {
+        ImageIcon merce1 = new ImageIcon(".//atteli//merceC.jpg");
+        ImageIcon merce2 = new ImageIcon(".//atteli//merceB.jpg");
+        ImageIcon merce3 = new ImageIcon(".//atteli//merceK.jpg");
+        JPanel panel2 = new JPanel(new GridLayout(3, 2));
         
-        ActionListener listener = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                merce = ((JRadioButton) e.getSource()).getText();
-            }
-        };
+        AtteliPogas2(panel2, merce1, "Ķiploku majonēze");
+        AtteliPogas2(panel2, merce2, "Barbekju mērce");
+        AtteliPogas2(panel2, merce3, "Ķiploku majonēze");
         
-        radioBut1.addActionListener(listener);
-        radioBut2.addActionListener(listener);
-        radioBut3.addActionListener(listener);
-        
-        JPanel panel = new JPanel();
-        panel.add(radioBut1);
-        panel.add(radioBut2);
-        panel.add(radioBut3);
         do {
-        	JOptionPane.showMessageDialog(null, panel, "Mērces izvēle, cena + 0.50", JOptionPane.PLAIN_MESSAGE);
+        	JOptionPane.showConfirmDialog(null, panel2, "Merces izvēle", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         }while(merce == null);
         return merce;
     }
+    
+    static void AtteliPogas2(JPanel panel, ImageIcon icon, String option) {
+        JRadioButton radioPogas2 = new JRadioButton(option);
+        radioPogas2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                merce = option;
+            }
+        });
+        panel.add(new JLabel(icon));
+        panel.add(radioPogas2);
+        
+    }
+    
     
     static void skana(String nosaukums) throws MalformedURLException,
 	UnsupportedAudioFileException, IOException, LineUnavailableException{

@@ -2,11 +2,11 @@ package Fedotova_pica;
 
 public class pasutijums {
 	private String picasNos, dzerNos, d, merce;
-	private boolean siers, piegad;
+	private boolean siers, piegad, kFri;
 	private double cena;
 	private int nr;
 
-	public pasutijums(String picasNos, String dzerNos, boolean siers, String merce, double cena, String d, int nr, boolean piegad) {
+	public pasutijums(String picasNos, String dzerNos, boolean siers, String merce, double cena, String d, int nr, boolean piegad, boolean kFri) {
 		this.picasNos = picasNos;
 		this.dzerNos = dzerNos;
 		this.merce = merce;
@@ -15,6 +15,7 @@ public class pasutijums {
 		this.d = d;
 		this.nr = nr;
 		this.piegad = piegad;
+		this.kFri = kFri;
 	}
 
 	public void setCena(int cena) {
@@ -79,6 +80,14 @@ public class pasutijums {
 
 	public void setPiegad(boolean piegad) {
 		this.piegad = piegad;
+	}
+	
+	public boolean iskFri() {
+		return kFri;
+	}
+
+	public void setkFri(boolean kFri) {
+		this.kFri = kFri;
 	}
 	
 	public String izvadit() {
